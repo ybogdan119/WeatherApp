@@ -1,0 +1,40 @@
+﻿@model ForecastDayViewModel
+
+@{
+    ViewData["Title"] = "WeatherApp";
+}
+
+<div class="container">
+    <h1>Hourly weather forecast for @ViewBag.Location</h1>
+
+    <div class="current-day-info">
+        <h2>Forecast for @Model.Date</h2>
+        <div class="card mb-4">
+            <div class="card-body">
+                <p class="card-text">Maximum temperature: @Model.MaxTemperature &deg;C</p>
+                <p class="card-text">Minimum temperature: @Model.MinTemperature &deg;C</p>
+            </div>
+        </div>
+    </div>
+
+    <h2>Hourly daily forecast</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>temperature (&deg;C)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var hour in Model.Hours)
+            {
+                <tr>
+                    <td>@hour.TimeOfDay</td>
+                    <td>@hour.Temperature</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+

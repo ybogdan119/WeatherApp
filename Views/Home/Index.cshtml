@@ -1,0 +1,36 @@
+﻿@model WeatherViewModel
+
+@{
+    ViewData["Title"] = "WeatherApp";
+}
+<body>
+    <div class="current-weather">
+        <h2>Current weather</h2>
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">@Model.Location</h5>
+                <p class="card-text">Current time: @Model.Current.Time</p>
+                <p class="card-text">Current temperature: @Model.Current.Temperature &deg;C</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="containter">
+        <h2>@Model.Forecast.Length day forecast for @Model.Location</h2>
+        <ul class="list-inline">
+            @for (int day = 0; day < Model.Forecast.Length; day++)
+            {
+                <li class="list-inline-item">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title"> @Model.Forecast[day].Date</h5>
+                            <p class="card-text">Maximum temperature: @Model.Forecast[day].MaxTemperature &deg;C</p>
+                            <p class="card-text">Minimum temperature: @Model.Forecast[day].MinTemperature &deg;C</p>
+                            <a asp-controller="Home" asp-action="Detailed" asp-route-location="@Model.Location" asp-route-day="@day">Get details</a>
+                        </div>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+</body>
